@@ -1,3 +1,5 @@
+using System;
+
 namespace RoleplayGame
 {
     public class Dwarf : ICharacter
@@ -50,6 +52,7 @@ namespace RoleplayGame
             if (this.DefenseValue < power)
             {
                 this.Health -= power - this.DefenseValue;
+                Console.WriteLine($"{this.Name} receive attack");
             }
         }
 
