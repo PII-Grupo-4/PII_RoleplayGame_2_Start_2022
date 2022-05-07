@@ -6,11 +6,6 @@ namespace RoleplayGame
     {
         private int health = 100;
 
-        public Dwarf(string name)
-        {
-            this.Name = name;
-        }
-
         public string Name { get; set; }
 
         public Axe Axe { get; set; }
@@ -18,6 +13,11 @@ namespace RoleplayGame
         public Shield Shield { get; set; }
 
         public Helmet Helmet { get; set; }
+
+        public Dwarf(string name)
+        {
+            this.Name = name;
+        }
 
         public int AttackValue
         {
@@ -49,13 +49,24 @@ namespace RoleplayGame
 
         public void ReceiveAttack(int power)
         {
-            if (this.DefenseValue < power)
+            if (this.health > 0)
             {
-                this.Health -= power - this.DefenseValue;
-                Console.WriteLine($"{this.Name} receive attack");
+                if (power >= (this.DefenseValue))
+                {
+                    this.health = this.health - (power - this.DefenseValue);
+                    if (this.health <= 0)
+                    {
+                        this.health = 0;
+                        Console.WriteLine($"{this.Name} died.");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{this.Name} have {this.health} HP after the attack");
+                    }
+                }
             }
-        }
 
+        }
         public void Cure()
         {
             this.Health = 100;

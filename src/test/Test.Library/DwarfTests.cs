@@ -73,6 +73,16 @@ namespace Test.Library
 
             Assert.AreEqual(dwarfTest.AttackValue, expected);
         }
+        public void CureTest()
+        {
+            Dwarf dwarfTest = new Dwarf("DwarfTest");
+            
+            dwarfTest.Cure();
+            
+            int expected = 100;
+
+            Assert.AreEqual(dwarfTest.Health, expected);
+        }
     }
 
 
