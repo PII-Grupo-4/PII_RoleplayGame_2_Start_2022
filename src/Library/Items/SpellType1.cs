@@ -1,6 +1,6 @@
 namespace RoleplayGame
 {
-    public class Spell  : IMagicItems // también se podria haber implementado las interfaces IDefenseItems, IAttackItems
+    public class SpellType1 : ISpell
     {
         public int AttackValue
         {

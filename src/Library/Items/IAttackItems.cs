@@ -1,7 +1,7 @@
 
 namespace RoleplayGame
 {
-  public interface IAttackItems
+  public interface IAttackItem
   {
       int AttackValue { get;}
   }  

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RoleplayGame
 {
@@ -6,24 +7,27 @@ namespace RoleplayGame
     {
         private int health = 100;
 
-        public string Name { get; set; }
-
-        public Axe Axe { get; set; }
-
-        public Shield Shield { get; set; }
-
-        public Helmet Helmet { get; set; }
-
         public Dwarf(string name)
         {
             this.Name = name;
         }
 
+        public string Name { get; set; }
+
+        public List<IAttackItem> AttackItems { get; set; }
+
+        public List<IDefenseItem> DefenseItems { get; set; }
+
         public int AttackValue
         {
             get
             {
-                return Axe.AttackValue;
+                int value = 0;
+                foreach (IAttackItem attackItem in this.AttackItems)
+                {
+                    value += attackItem.AttackValue;
+                }
+                return value;
             }
         }
 
@@ -31,7 +35,12 @@ namespace RoleplayGame
         {
             get
             {
-                return Shield.DefenseValue + Helmet.DefenseValue;
+                int value = 0;
+                foreach (IDefenseItem defenseItem in this.DefenseItems)
+                {
+                    value += defenseItem.DefenseValue;
+                }
+                return value;
             }
         }
 

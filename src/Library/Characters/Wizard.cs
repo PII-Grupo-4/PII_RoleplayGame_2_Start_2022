@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RoleplayGame
 {
@@ -13,15 +14,26 @@ namespace RoleplayGame
 
         public string Name { get; set; }
 
-        public SpellsBook SpellsBook { get; set; }
+        public List<IAttackItem> AttackItems { get; set; }
 
-        public Staff Staff { get; set; }
+        public List<IDefenseItem> DefenseItems { get; set; }
+
+        public List<IMagicItem> MagicItems { get; set; }
 
         public int AttackValue
         {
             get
             {
-                return SpellsBook.AttackValue + Staff.AttackValue;
+                int value = 0;
+                foreach (IAttackItem attackItem in this.AttackItems)
+                {
+                    value += attackItem.AttackValue;
+                }
+                foreach (IMagicItem magicItem in this.MagicItems)
+                {
+                    value += magicItem.AttackValue;
+                }
+                return value;
             }
         }
 
@@ -29,7 +41,16 @@ namespace RoleplayGame
         {
             get
             {
-                return SpellsBook.DefenseValue + Staff.DefenseValue;
+                int value = 0;
+                foreach (IDefenseItem defenseItem in this.DefenseItems)
+                {
+                    value += defenseItem.DefenseValue;
+                }
+                foreach (IMagicItem magicItem in this.MagicItems)
+                {
+                    value += magicItem.DefenseValue;
+                }
+                return value;
             }
         }
 

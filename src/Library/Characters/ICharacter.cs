@@ -1,13 +1,16 @@
+using System.Collections.Generic;
+
 namespace RoleplayGame
 {
     public interface ICharacter
     {
-        void Cure();
-        void ReceiveAttack(int power);
+        int Health { get; }
         int AttackValue { get; }
         int DefenseValue { get; }
-        int Health { get; }
+        List<IAttackItem> AttackItems { get; }
+        List<IDefenseItem> DefenseItems { get; }
 
-
+        void ReceiveAttack(int power);
+        void Cure();
     }
 }
