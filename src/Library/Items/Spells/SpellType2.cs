@@ -14,7 +14,7 @@ namespace RoleplayGame
         {
             get
             {
-                return 750;
+                return 50;
             }
         }
     }

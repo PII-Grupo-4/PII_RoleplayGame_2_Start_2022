@@ -7,6 +7,7 @@ namespace Test.Library
     [TestFixture]
     public class DwarfTests
     {
+        /*
 
         [Test]
         public void ReceiveAttackTest()
@@ -82,7 +83,9 @@ namespace Test.Library
             int expected = 100;
 
             Assert.AreEqual(dwarfTest.Health, expected);
+
         }
+        */
     }
 
 

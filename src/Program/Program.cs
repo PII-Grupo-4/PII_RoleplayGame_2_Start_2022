@@ -1,5 +1,6 @@
 ﻿using System;
 using RoleplayGame;
+using System.Collections.Generic;
 
 namespace Program
 {

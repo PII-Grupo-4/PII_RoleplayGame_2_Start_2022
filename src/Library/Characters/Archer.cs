@@ -6,6 +6,8 @@ namespace RoleplayGame
     public class Archer : ICharacter
     {
         private int health = 100;
+        private List<IAttackItem> attackItems = new List<IAttackItem>();
+        private List<IDefenseItem> defenseItems = new List<IDefenseItem>();
 
         public Archer(string name)
         {
@@ -13,10 +15,6 @@ namespace RoleplayGame
         }
 
         public string Name { get; set; }
-        
-        public List<IAttackItem> AttackItems { get; set; }
-
-        public List<IDefenseItem> DefenseItems { get; set; }
 
         public int AttackValue
         {
@@ -53,6 +51,30 @@ namespace RoleplayGame
             private set
             {
                 this.health = value < 0 ? 0 : value;
+            }
+        }
+
+        public List<IAttackItem> AttackItems
+        {
+            get
+            {
+                return this.attackItems;
+            }
+            set
+            {
+                this.attackItems = value;
+            }
+        }
+
+        public List<IDefenseItem> DefenseItems
+        {
+            get
+            {
+                return this.defenseItems;
+            }
+            set
+            {
+                this.defenseItems = value;
             }
         }
 
