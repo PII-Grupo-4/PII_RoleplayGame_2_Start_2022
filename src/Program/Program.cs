@@ -24,7 +24,7 @@ namespace Program
             Console.WriteLine($"Gimli's health = {gimli.Health}");
             Console.WriteLine($"Gandalf attacks Gimli with {gandalf.AttackValue} of damage");
 
-            gimli.ReceiveAttack(gandalf.AttackValue);
+            gimli.ReceiveAttack(gandalf);
 
             Console.WriteLine($"Gimli's health = {gimli.Health}");
 

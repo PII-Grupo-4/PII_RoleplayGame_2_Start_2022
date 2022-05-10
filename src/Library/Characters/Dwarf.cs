@@ -56,26 +56,14 @@ namespace RoleplayGame
             }
         }
 
-        public void ReceiveAttack(int power)
+        public void ReceiveAttack(ICharacter character)
         {
-            if (this.health > 0)
+            if (this.DefenseValue < character.AttackValue)
             {
-                if (power >= (this.DefenseValue))
-                {
-                    this.health = this.health - (power - this.DefenseValue);
-                    if (this.health <= 0)
-                    {
-                        this.health = 0;
-                        Console.WriteLine($"{this.Name} died.");
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{this.Name} have {this.health} HP after the attack");
-                    }
-                }
+                this.Health -= character.AttackValue - this.DefenseValue;
             }
-
         }
+        
         public void Cure()
         {
             this.Health = 100;

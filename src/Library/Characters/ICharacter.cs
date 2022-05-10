@@ -10,7 +10,7 @@ namespace RoleplayGame
         List<IAttackItem> AttackItems { get; }
         List<IDefenseItem> DefenseItems { get; }
 
-        void ReceiveAttack(int power);
+        void ReceiveAttack(ICharacter character);
         void Cure();
     }
 }

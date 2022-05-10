@@ -66,12 +66,11 @@ namespace RoleplayGame
             }
         }
 
-        public void ReceiveAttack(int power)
+        public void ReceiveAttack(ICharacter character)
         {
-            if (this.DefenseValue < power)
+            if (this.DefenseValue < character.AttackValue)
             {
-                this.Health -= power - this.DefenseValue;
-                Console.WriteLine($"{this.Name} receive attack");
+                this.Health -= character.AttackValue - this.DefenseValue;
             }
         }
 
