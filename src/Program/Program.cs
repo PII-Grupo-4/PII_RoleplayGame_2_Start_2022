@@ -13,8 +13,9 @@ namespace Program
 
             Wizard gandalf = new Wizard("Gandalf");
 
-            gandalf.AttackItems.Add(new Staff());
-            gandalf.DefenseItems.Add(new Staff());
+            Staff stafito = new Staff();
+            gandalf.AttackItems.Add(stafito);
+            gandalf.DefenseItems.Add(stafito);
             gandalf.MagicItems.Add(book);
 
             Dwarf gimli = new Dwarf("Gimli");
