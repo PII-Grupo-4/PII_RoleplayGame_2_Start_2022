@@ -9,7 +9,7 @@ namespace Program
         static void Main(string[] args)
         {
             SpellsBook book = new SpellsBook();
-            book.Spells = new SpellType1[]{ new SpellType1() };
+            book.Spells = new ISpell[]{ new SpellType1() };
 
             Wizard gandalf = new Wizard("Gandalf");
 
