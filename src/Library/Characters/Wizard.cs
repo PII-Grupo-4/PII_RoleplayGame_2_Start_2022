@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 namespace RoleplayGame
 {
-    public class Wizard : ICharacter
+    public class Wizard : ICharacter, IMagicCharacter
     {
         private int health = 100;
-        private List<IAttackItem> attackItems = new List<IAttackItem>();
-        private List<IDefenseItem> defenseItems = new List<IDefenseItem>();
-        private List<IMagicItem> magicItems = new List<IMagicItem>();
-        // Por ahora solo los magos pueden tener IMagicItems
+        public List<IItem> Items { get; }
+        public List<IMagicItem> MagicItems { get;}
+
 
         public Wizard(string name)
         {
             this.Name = name;
+            this.Items = new List<IItem>();
+            this.MagicItems = new List<IMagicItem>();
         }
 
         public string Name { get; set; }
@@ -23,9 +24,13 @@ namespace RoleplayGame
             get
             {
                 int value = 0;
-                foreach (IAttackItem attackItem in this.AttackItems)
+                foreach (var item in this.Items)
                 {
-                    value += attackItem.AttackValue;
+                    var attackItem = item as IAttackItem;
+                    if (attackItem != null)
+                    {
+                        value += attackItem.AttackValue;
+                    }
                 }
                 foreach (IMagicItem magicItem in this.MagicItems)
                 {
@@ -40,9 +45,13 @@ namespace RoleplayGame
             get
             {
                 int value = 0;
-                foreach (IDefenseItem defenseItem in this.DefenseItems)
+                foreach (var item in this.Items)
                 {
-                    value += defenseItem.DefenseValue;
+                    var defenseItem = item as IDefenseItem;
+                    if (defenseItem != null)
+                    {
+                        value += defenseItem.DefenseValue;
+                    }
                 }
                 foreach (IMagicItem magicItem in this.MagicItems)
                 {
@@ -64,39 +73,29 @@ namespace RoleplayGame
             }
         }
 
-        public List<IAttackItem> AttackItems
+        public void AddItem(IItem item)
         {
-            get
+            this.Items.Add(item);
+        }
+
+        public void RemoveItem(IItem item)
+        {
+            if (this.Items.Contains(item))
             {
-                return this.attackItems;
-            }
-            set
-            {
-                this.attackItems = value;
+                this.Items.Remove(item);
             }
         }
 
-        public List<IDefenseItem> DefenseItems
+        public void AddMagicItem(IMagicItem magicItem)
         {
-            get
-            {
-                return this.defenseItems;
-            }
-            set
-            {
-                this.defenseItems = value;
-            }
+            this.MagicItems.Add(magicItem);
         }
 
-        public List<IMagicItem> MagicItems
+        public void RemoveMagicItem(IMagicItem magicItem)
         {
-            get
+            if (this.MagicItems.Contains(magicItem))
             {
-                return this.magicItems;
-            }
-            set
-            {
-                this.magicItems = value;
+                this.MagicItems.Remove(magicItem);
             }
         }
 

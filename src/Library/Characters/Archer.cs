@@ -1,29 +1,32 @@
 using System.Collections.Generic;
-using System;
 
 namespace RoleplayGame
 {
     public class Archer : ICharacter
     {
         private int health = 100;
-        private List<IAttackItem> attackItems = new List<IAttackItem>();
-        private List<IDefenseItem> defenseItems = new List<IDefenseItem>();
+        public List<IItem> Items { get; }
 
         public Archer(string name)
         {
             this.Name = name;
+            this.Items = new List<IItem>();
         }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
         public int AttackValue
         {
             get
             {
                 int value = 0;
-                foreach (IAttackItem attackItem in this.AttackItems)
+                foreach (var item in this.Items)
                 {
-                    value += attackItem.AttackValue;
+                    var attackItem = item as IAttackItem;
+                    if (attackItem != null)
+                    {
+                        value += attackItem.AttackValue;
+                    }
                 }
                 return value;
             }
@@ -34,9 +37,13 @@ namespace RoleplayGame
             get
             {
                 int value = 0;
-                foreach (IDefenseItem defenseItem in this.DefenseItems)
+                foreach (var item in this.Items)
                 {
-                    value += defenseItem.DefenseValue;
+                    var defenseItem = item as IDefenseItem;
+                    if (defenseItem != null)
+                    {
+                        value += defenseItem.DefenseValue;
+                    }
                 }
                 return value;
             }
@@ -54,27 +61,16 @@ namespace RoleplayGame
             }
         }
 
-        public List<IAttackItem> AttackItems
+        public void AddItem(IItem item)
         {
-            get
-            {
-                return this.attackItems;
-            }
-            set
-            {
-                this.attackItems = value;
-            }
+            this.Items.Add(item);
         }
 
-        public List<IDefenseItem> DefenseItems
+        public void RemoveItem(IItem item)
         {
-            get
+            if (this.Items.Contains(item))
             {
-                return this.defenseItems;
-            }
-            set
-            {
-                this.defenseItems = value;
+                this.Items.Remove(item);
             }
         }
 
