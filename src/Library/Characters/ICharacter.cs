@@ -7,8 +7,7 @@ namespace RoleplayGame
         int Health { get; }
         int AttackValue { get; }
         int DefenseValue { get; }
-        List<IAttackItem> AttackItems { get; }
-        List<IDefenseItem> DefenseItems { get; }
+        List<IItem> Items { get; }
 
         void ReceiveAttack(ICharacter character);
         void Cure();
