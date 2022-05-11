@@ -1,6 +1,5 @@
 ﻿using System;
 using RoleplayGame;
-using System.Collections.Generic;
 
 namespace Program
 {
@@ -14,14 +13,13 @@ namespace Program
             Wizard gandalf = new Wizard("Gandalf");
 
             Staff stafito = new Staff();
-            gandalf.AttackItems.Add(stafito);
-            gandalf.DefenseItems.Add(stafito);
-            gandalf.MagicItems.Add(book);
+            gandalf.AddItem(stafito);
+            gandalf.AddMagicItem(book);
 
             Dwarf gimli = new Dwarf("Gimli");
-            gimli.AttackItems.Add(new Axe());
-            gimli.DefenseItems.Add(new Helmet());
-            gimli.DefenseItems.Add(new Shield());
+            gimli.AddItem(new Axe());
+            gimli.AddItem(new Helmet());
+            gimli.AddItem(new Shield());
 
             Console.WriteLine($"Gimli's health = {gimli.Health}");
             Console.WriteLine($"Gandalf attacks Gimli with {gandalf.AttackValue} of damage");
