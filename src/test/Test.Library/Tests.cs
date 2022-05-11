@@ -22,19 +22,18 @@ namespace Test.Library
             archerTest = new Archer("ArcherTest");
             wizardTest = new Wizard("wizardTest");
 
-            dwarfTest.AttackItems.Add(new Axe());
-            dwarfTest.DefenseItems.Add(new Helmet());
-            dwarfTest.DefenseItems.Add(new Shield());
+            dwarfTest.AddItem(new Axe());
+            dwarfTest.AddItem(new Helmet());
+            dwarfTest.AddItem(new Shield());
 
-            knightTest.AttackItems.Add(new Sword());
-            knightTest.DefenseItems.Add(new Armor());
+            knightTest.AddItem(new Sword());
+            knightTest.AddItem(new Armor());
 
-            archerTest.AttackItems.Add(new Bow());
-            archerTest.DefenseItems.Add(new Helmet());
+            archerTest.AddItem(new Bow());
+            archerTest.AddItem(new Helmet());
 
             Staff stafito = new Staff();
-            wizardTest.AttackItems.Add(stafito);
-            wizardTest.DefenseItems.Add(stafito);
+            wizardTest.AddItem(new Staff());
         }
         
         /*
@@ -106,7 +105,9 @@ namespace Test.Library
         [Test]
         public void CharacterDeadTest()
         {
-            wizardTest.AttackItems.Add(new Staff());
+            wizardTest.AddItem(new Sword());
+            wizardTest.AddItem(new Sword());
+    
             dwarfTest.ReceiveAttack(wizardTest);
             archerTest.ReceiveAttack(wizardTest);
             knightTest.ReceiveAttack(wizardTest);
@@ -130,6 +131,10 @@ namespace Test.Library
             wizardTest.Cure();
             
             Assert.AreEqual(100, dwarfTest.Health);
+            Assert.AreEqual(100, archerTest.Health);
+            Assert.AreEqual(100, knightTest.Health);
+            Assert.AreEqual(100, wizardTest.Health);
+            
         }
 
 
