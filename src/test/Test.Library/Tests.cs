@@ -10,8 +10,7 @@ namespace Test.Library
         private Knight knightTest;
         private Archer archerTest;
         private Wizard wizardTest;
-        
-        
+        private Staff stafito;
         
         // En SetUp creamos todos los subtipos de ICharacter y los armamos con IAttackItems y IDefenseItems
         [SetUp]
@@ -32,8 +31,8 @@ namespace Test.Library
             archerTest.AddItem(new Bow());
             archerTest.AddItem(new Helmet());
 
-            Staff stafito = new Staff();
-            wizardTest.AddItem(new Staff());
+            stafito = new Staff();
+            wizardTest.AddItem(stafito);
         }
         
         /*
@@ -155,17 +154,42 @@ namespace Test.Library
                     AttackValue_Final       220
                     DefenseValue_Final      220
                     
-        
+            De paso también probamos RemoveMagicItem
         */
         [Test]
         public void MagicItem()
         {
             SpellsBook bookTest = new SpellsBook();
             bookTest.Spells = new ISpell[]{ new SpellType1() , new SpellType2() };
-            wizardTest.MagicItems.Add(bookTest);
+            wizardTest.AddMagicItem(bookTest);
 
             Assert.AreEqual(220, wizardTest.DefenseValue);
             Assert.AreEqual(220, wizardTest.AttackValue);
+
+            wizardTest.RemoveMagicItem(bookTest);
+            Assert.AreEqual(100, wizardTest.DefenseValue);
+            Assert.AreEqual(100, wizardTest.AttackValue);
+        }
+
+        // Se testea que RemoveItem funcione correctamente
+        [Test]
+        public void RemoveItem()
+        {
+            // wizardTest posee un Staff.
+            // wizardTest no posee una Sword, se la elimina para comprobar que si se elimina un Item que no
+            //      tiene, sus valores no deben disminuir.
+            wizardTest.RemoveItem(new Sword());
+            Assert.AreEqual(100, wizardTest.DefenseValue);
+            Assert.AreEqual(100, wizardTest.AttackValue);
+            
+            wizardTest.RemoveItem(stafito);
+            Assert.AreEqual(0, wizardTest.DefenseValue);
+            Assert.AreEqual(0, wizardTest.AttackValue);
+
+            // Volvemos a eliminar el Staff para demostrar que ya no lo posee wizardTest.
+            wizardTest.RemoveItem(stafito);
+            Assert.AreEqual(0, wizardTest.DefenseValue);
+            Assert.AreEqual(0, wizardTest.AttackValue);
         }
         
     }
